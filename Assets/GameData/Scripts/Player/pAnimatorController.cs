@@ -9,12 +9,20 @@ public class pAnimatorController : MonoBehaviour
     public void Isidle()
     {
         animator.SetBool("Idle",true);
-        animator.SetBool("Run",false);
+        animator.SetBool("Walk",false);
+        animator.SetBool("IdleShoot",false);
     }
     public void IsRun()
     {
         animator.SetBool("Idle",false);
-        animator.SetBool("Run",true);
+        animator.SetBool("Walk",true);
+        animator.SetBool("IdleShoot",false);
+    }
+    public void IsIdleShoot()
+    {   
+        animator.SetBool("IdleShoot",true);
+        animator.SetBool("Idle",false);
+        animator.SetBool("Walk",false);
     }
 
 
