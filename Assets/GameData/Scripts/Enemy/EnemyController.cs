@@ -10,11 +10,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private EnemyAnimator e_animator;
     [SerializeField] private Collider m_Collider;
     [SerializeField] private float m_Distance = 100f;
+    [SerializeField] private ParticleSystem DeadParticle;
+    [SerializeField] private GameObject diamonds;
+    [SerializeField] private Transform coinParent;
+
+
     public bool isdead;
     
     private void Awake()
     {
         m_Target = GameObject.FindGameObjectWithTag("Player").transform;
+        coinParent = GameObject.FindGameObjectWithTag("Parent").transform;
     }
 
     void Start()
@@ -47,11 +53,13 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
+            Instantiate(diamonds, transform.position, Quaternion.identity,coinParent);
+            DeadParticle.Play();
             isdead = true;
             e_animator.IsEdead();
             m_Agent.enabled = false;
             m_Collider.isTrigger = false;
-            Destroy(gameObject,8f);
+            Destroy(gameObject,0.8f);
         }
     }
 

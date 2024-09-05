@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,50 @@ public class PlayerController : MonoBehaviour
     public bool isPc;
 
     private GameObject radialSkillEffect;
+    public static PlayerController Instance;
+    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private int coinCount = 0;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddCoin(int amount)
+    {
+        coinCount += amount;
+        UpdateCoinUI();
+    }
+
+    private void UpdateCoinUI()
+    {
+        coinText.text = "" + coinCount.ToString();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void Start()
     {
